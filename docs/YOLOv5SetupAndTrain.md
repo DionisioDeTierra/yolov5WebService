@@ -49,7 +49,7 @@ python yolov5/train.py --img 640 --cfg yolov5s.yaml --batch 32 --epochs 150 --da
 
 ### Important:
 
-- model training can take quite a lot of time, depending on your pc. On my laptop, it took around (Started around 15:10)
+- model training can take quite a lot of time, depending on your pc. On my medium-scaled laptop, it took 5 hours to execute the command above for fire detection dataset
 - it is very important, that you get informed about all parameters used here as they can be crucial to build successful model
 
 ### Short notes:
@@ -57,6 +57,31 @@ python yolov5/train.py --img 640 --cfg yolov5s.yaml --batch 32 --epochs 150 --da
 For successful training, parameter mAP50 should grow slowly( though can degrade in some epocs), and in the end should be higher as 0.70,
 optimally even higher as 0.90
 
+For the Fire Detection dataset was only 0.5, which really a poor prediction
+
+In this case it is ok, (I did not spent time to analyse the dataset, check how annotations)
+
 You can increase epocs to be much bigger, once the model recognizes, there is no growth anymore, it will abort training on its own.
 
 ## Test yolo model
+
+Your train results were saved in the folder yolov5/runs/train/<name parameter provided for train.py command>
+Please check there is a lot of info, like F1_curve, PR_curve, results, etc.
+
+### Validate the train results:
+
+```
+python yolov5/val.py --weights yolov5/runs/train/detectFire5/weights/best.pt --data ./dataset/data.yaml --name detectFire
+```
+
+The results would be saved to the folder: yolov5/runs/val/<name parameter provided for val.py command>
+
+### Predict test images
+
+```
+python yolov5/detect.py --source ./dataset/test/images/ --weights yolov5/runs/train/detectFire5/weights/best.pt --conf 0.25 --name fireDetectTest
+```
+
+The results would be saved to the folder: yolov5/runs/detect/<name parameter provided for val.py command>
+
+Please open some images to check. For fire detect, at least on half of the images the fire was recognized. You can also review the images where fire was not recognized, and make some ideas, why fire was not recognized (different background color, no smoke, different fire type, image quality, etc..)

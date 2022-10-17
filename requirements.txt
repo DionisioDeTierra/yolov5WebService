@@ -1,0 +1,5 @@
+#Yolov5
+torch>=1.7.0
+
+# Server
+Flask==2.0.1

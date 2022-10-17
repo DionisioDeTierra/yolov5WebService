@@ -14,7 +14,8 @@ This Repository is designed for beginners, who never worked with Yolov5 and want
 ## Step by Step Manual
 
 - [Part 1: Dataset preparation](./docs/datasetPrepatation.md)
-- [Part 2: YOLO v5 setup and model training](./docs/YOLOv5SetupAndTrain.md)
+- [Part 2: YOLO v5 setup and train the model](./docs/YOLOv5SetupAndTrain.md)
+- [Part 3: Setup Flask Web Server for YOLOv5](./docs/SetupWebServerForYolo.md)
 
 ## Main Challenges for Beginners
 
